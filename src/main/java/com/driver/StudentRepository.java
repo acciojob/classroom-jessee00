@@ -12,13 +12,15 @@ import java.util.Map;
 @Repository
 public class StudentRepository {
 
-    Student st;
-    Teacher t;
-    Map<String,Student>studentMap = new HashMap<>();
-    Map<String,Teacher>TeacherMap = new HashMap<>();
-    Map<String,List<String>>studentTeacherPair = new HashMap<>();
+    Map<String,Student>studentMap;
+    Map<String,Teacher>TeacherMap;
+    Map<String,List<String>>studentTeacherPair;
 
-
+    public StudentRepository() {
+        studentMap = new HashMap<>();
+        TeacherMap = new HashMap<>();
+        studentTeacherPair = new HashMap<>();
+    }
     public void addStudent(Student student) {
         studentMap.put(student.getName(),student);
     }
@@ -28,7 +30,7 @@ public class StudentRepository {
     }
 
     public void addStudentTeacherPair(String student, String teacher) {
-        if(!studentMap.containsKey(teacher)){
+        if(!studentTeacherPair.containsKey(teacher)){
             studentTeacherPair.put(teacher,new ArrayList<>());
         }
         studentTeacherPair.get(teacher).add(student);
